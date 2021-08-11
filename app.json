@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "currencyConvertor",
-    "slug": "currencyConvertor",
+    "name": "currencyConverter",
+    "slug": "currencyConverter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "",
