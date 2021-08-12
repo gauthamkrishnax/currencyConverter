@@ -19,6 +19,7 @@ const openLink = (url) =>
 const Options = () => {
   return (
     <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <ScrollView>
         <RowItem
           title="Themes "

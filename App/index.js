@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./screens/Home";
+import Navigation from "./config/Navigation";
 
 const Index = () => {
-  return <Home />;
+  return <Navigation />;
 };
 
 export default Index;
