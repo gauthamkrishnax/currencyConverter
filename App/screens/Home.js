@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -18,6 +18,7 @@ import colors from "../constants/colors";
 import ConversionInput from "../components/ConversionInput";
 import Button from "../components/Button";
 import { KeyboardSpacer } from "../components/KeyboardSpacer";
+import { ConversionContext } from "../util/ConversionContext";
 
 const screen = Dimensions.get("window");
 
@@ -66,12 +67,13 @@ const styles = StyleSheet.create({
 });
 
 const Home = ({ navigation }) => {
-  const baseCurrency = "USD";
-  const quoteCurrency = "GBP";
+  const [value, setValue] = useState("100");
   const conversionRate = 0.89824;
   const date = new Date();
 
   const [scrollEnabled, setScrollEnabled] = useState(false);
+  const { baseCurrency, quoteCurrency, swapCurrencies } =
+    useContext(ConversionContext);
 
   return (
     <View style={styles.container}>
@@ -99,24 +101,26 @@ const Home = ({ navigation }) => {
           <View style={styles.inputContainer}>
             <ConversionInput
               text={baseCurrency}
-              value="123"
+              value={value}
               onButtonPress={() =>
                 navigation.push("CurrencyList", {
                   title: "Base Currency",
-                  activeCurrency: baseCurrency,
+                  isBaseCurrency: true,
                 })
               }
               keyboardType="numeric"
-              onChangeText={(text) => console.log("text", text)}
+              onChangeText={(text) => setValue(text)}
             />
             <ConversionInput
               text={quoteCurrency}
-              value="123"
+              value={
+                value && `${(parseFloat(value) * conversionRate).toFixed(2)}`
+              }
               editable={false}
               onButtonPress={() =>
                 navigation.push("CurrencyList", {
                   title: "Quote Currency",
-                  activeCurrency: quoteCurrency,
+                  isBaseCurrency: false,
                 })
               }
             />
@@ -127,7 +131,7 @@ const Home = ({ navigation }) => {
               "MMM do, yyyy"
             )}`}
           </Text>
-          <Button text="Reverse Currencies" onPress={() => alert("todo!")} />
+          <Button text="Reverse Currencies " onPress={() => swapCurrencies()} />
           <KeyboardSpacer onToggle={(visible) => setScrollEnabled(visible)} />
         </View>
       </ScrollView>

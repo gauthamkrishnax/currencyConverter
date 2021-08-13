@@ -49,7 +49,7 @@ const ConversionInput = ({ text, onButtonPress, ...props }) => {
   return (
     <View style={containerStyles}>
       <TouchableOpacity style={styles.button} onPress={onButtonPress}>
-        <Text style={styles.buttonText}>{text}</Text>
+        <Text style={styles.buttonText}> {text} </Text>
       </TouchableOpacity>
       <TextInput style={styles.input} {...props} />
     </View>
