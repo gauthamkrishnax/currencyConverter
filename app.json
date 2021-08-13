@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.gauthamkrishna.currencyConverter"
     },
     "web": {
       "favicon": ""
